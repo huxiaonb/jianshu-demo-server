@@ -1,7 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
-import { User } from '../user/user.schema';
-
+import mongoose, { Document } from 'mongoose';
+mongoose.set('debug', true);
 export type ArticleDocument = Article & Document;
 
 @Schema({
@@ -18,8 +17,11 @@ export class Article extends Document {
   title: string;
   @Prop()
   content: string;
-  @Prop()
-  author: number;
+  @Prop({
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  })
+  user: string;
   @Prop()
   read: number;
   @Prop()

@@ -9,7 +9,7 @@ export class UserService {
   findAll(): Promise<User[]> {
     return this.userModel.find().exec();
   }
-  async findOne(uid: number): Promise<User> {
+  async findOne(uid: string): Promise<User> {
     return this.userModel.findById(uid);
   }
 }

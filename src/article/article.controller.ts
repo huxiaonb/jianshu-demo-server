@@ -1,8 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { ArticleDto, ArticleService } from "./article.service";
-import { UserService } from "../user/user.service";
-import { Article } from "./article.schema";
-import { User } from "../user/user.schema";
+import { ArticleService } from './article.service';
+import { UserService } from '../user/user.service';
 
 @Controller('/article')
 export class ArticleController {
@@ -12,26 +10,7 @@ export class ArticleController {
   ) {}
   @Get('/list')
   async listArticle() {
-    const list = await this.articleService.findAll();
-    return list.map(async (item: Article) => {
-      const user: User = await this.userService.findOne(item.author);
-      return {
-        aid: item.id,
-        title: item.title,
-        content: item.content,
-        authorId: item.author,
-        read: item.read,
-        pay: item.pay,
-        like: item.like,
-        reply: item.reply,
-        main_pic: item.main_pic,
-        createTime: item.createTime,
-        name: user.name,
-        avatar: user.avatar,
-        user_like: user.like,
-        char_total: user.char_total,
-      } as ArticleDto;
-    });
+    return this.articleService.findAll();
   }
   @Post('/detail')
   getArticleDetail(@Body('articleId') articleId: number) {
