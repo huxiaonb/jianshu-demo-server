@@ -10,7 +10,10 @@ import { Observable } from 'rxjs';
 interface Response<T> {
   data: T;
   success: boolean;
-  message: string;
+  resp_common: {
+    msg: string;
+    ret: number;
+  };
 }
 
 @Injectable()
@@ -24,8 +27,10 @@ export class AppInterceptor<T> implements NestInterceptor<T, Response<T>> {
         return {
           data,
           success: true,
-          ret: 0,
-          message: '请求成功',
+          resp_common: {
+            ret: 0,
+            msg: '请求成功',
+          },
         };
       }),
     );

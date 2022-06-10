@@ -8,7 +8,7 @@ export class ArticleController {
     private userService: UserService,
     private articleService: ArticleService,
   ) {}
-  @Get('/list')
+  @Post('/list')
   async listArticle() {
     return this.articleService.findAll();
   }

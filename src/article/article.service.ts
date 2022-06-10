@@ -12,7 +12,7 @@ export class ArticleService {
   findAll() {
     return this.articleModel.find({}).populate('user').exec();
   }
-  async findOne(aid: number): Promise<Article> {
-    return this.articleModel.findById(aid);
+  async findOne(aid: number) {
+    return this.articleModel.findOne({ id: aid }).populate('user').exec();
   }
 }

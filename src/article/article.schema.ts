@@ -16,6 +16,8 @@ export class Article extends Document {
   @Prop()
   title: string;
   @Prop()
+  abstract: string;
+  @Prop()
   content: string;
   @Prop({
     type: mongoose.Schema.Types.ObjectId,
@@ -34,6 +36,8 @@ export class Article extends Document {
   main_pic: string;
   @Prop()
   createTime: Date;
+  @Prop()
+  char_count: number;
 }
 
 export const ArticleSchema = SchemaFactory.createForClass(Article);

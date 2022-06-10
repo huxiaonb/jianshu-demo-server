@@ -4,7 +4,7 @@ import { UserService } from './user.service';
 @Controller('/user')
 export class UserController {
   constructor(private userService: UserService) {}
-  @Get('/list')
+  @Post('/list')
   listArticle() {
     return this.userService.findAll();
   }
