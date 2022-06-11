@@ -13,7 +13,7 @@ export class ArticleController {
     return this.articleService.findAll();
   }
   @Post('/detail')
-  getArticleDetail(@Body('articleId') articleId: number) {
+  getArticleDetail(@Body('articleId') articleId: string) {
     return this.articleService.findOne(articleId);
   }
 }

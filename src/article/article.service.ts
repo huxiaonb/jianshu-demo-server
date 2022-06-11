@@ -12,7 +12,8 @@ export class ArticleService {
   findAll() {
     return this.articleModel.find({}).populate('user').exec();
   }
-  async findOne(aid: number) {
-    return this.articleModel.findOne({ id: aid }).populate('user').exec();
+  async findOne(aid: string) {
+    console.log('1231231', aid);
+    return this.articleModel.findOne({ _id: aid }).populate('user').exec();
   }
 }
