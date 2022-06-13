@@ -1,17 +1,38 @@
 version: '3.1'
 services:
+  nginx:
+    image: jianshu-demo-web:latest
+    ports:
+      - "8088:8088"
+      - "8080:8080"
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - nest
+    networks:
+      - jianshu-network
+
   nest:
     build:
       context: .
       dockerfile: Dockerfile
     environment:
+      - MONGO_URL=nest-mongodb
       - NODE_ENV=development
     ports:
       - "3000:3000"
     depends_on:
       - nest-mongodb
+    networks:
+      - jianshu-network
 
   nest-mongodb:
     image: mongo
     ports:
       - "27017:27017"
+    networks:
+      - jianshu-network
+
+networks:
+  jianshu-network:
+    driver: bridge

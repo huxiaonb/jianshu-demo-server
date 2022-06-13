@@ -2,22 +2,12 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ArticleModule } from './article/article.module';
 import { UserModule } from './user/user.module';
-import mongoose, { Document } from 'mongoose';
-// mongoose.set('debug', true);
-// mongoose.set('debug', function (collectionName, method, query, doc) {
-//   console.log(
-//     'Mongoose: ' +
-//       collectionName +
-//       '.' +
-//       method +
-//       ' (' +
-//       JSON.stringify(query, null, 2) +
-//       ')',
-//   );
-// });
+const url = process.env.MONGO_URL || 'localhost';
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/jianshu'),
+    MongooseModule.forRoot(
+      `mongodb://${url}:27017/jianshu?serverSelectionTimeoutMS=2000&authSource=admin`,
+    ),
     UserModule,
     ArticleModule,
   ],
