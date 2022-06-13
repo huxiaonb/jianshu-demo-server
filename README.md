@@ -29,7 +29,14 @@
 ## Installation
 
 ```bash
-$ npm install
+// 1.first build image: jianshu-demo-web in web folder
+$ docker build -t jianshu-web-demo .
+
+// 2.go to jianshu-demo-server folder
+$ docker compose up -d
+
+// 3.inspect mongodb image and create collections and run init sql(init.sql in source folder)
+  ...
 ```
 
 ## Running the app
