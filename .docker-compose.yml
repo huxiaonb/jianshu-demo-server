@@ -1,0 +1,19 @@
+version: '3.1'
+services:
+  nest:
+    container_name: jianshu-demo-server
+    image: jianshu-demo-server
+    build:
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "3000:3000"
+    depends_on:
+      - nest-mongodb
+
+  nest-mongodb:
+    container_name: mongodb
+    image: mongo
+    ports:
+      - "27017:27017"
