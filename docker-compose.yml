@@ -1,7 +1,6 @@
 version: '3.1'
 services:
   nest:
-    container_name: jianshu-demo-server
     image: jianshu-demo-server
     build:
       dockerfile: Dockerfile
@@ -13,7 +12,6 @@ services:
       - nest-mongodb
 
   nest-mongodb:
-    container_name: mongodb
     image: mongo
     ports:
       - "27017:27017"
